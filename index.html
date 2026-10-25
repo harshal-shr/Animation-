@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Harshal – AI Coder Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,800&display=swap">
+<style>
+:root{--bg:#12060a;--ink:#fff0ea;--mute:#b99690;--line:rgba(255,150,120,.2);--a:#ff6a3d;--b:#ff3d81;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Bricolage Grotesque',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+#glow{position:fixed;width:520px;height:520px;left:0;top:0;margin:-260px 0 0 -260px;border-radius:50%;background:radial-gradient(circle,rgba(255,106,61,.18),transparent 65%);pointer-events:none;z-index:1;will-change:transform}
+main,header,footer{position:relative;z-index:2}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--b);outline-offset:4px;border-radius:4px}
+nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:20px clamp(20px,5vw,56px);mix-blend-mode:difference}
+nav .logo{font-weight:800;font-size:1.25rem;letter-spacing:-.02em}
+nav .links{display:flex;gap:clamp(14px,3vw,34px);font-weight:500;font-size:.95rem}
+nav .links a:hover{opacity:.6}
+section{position:relative;z-index:2;padding:clamp(80px,14vh,160px) clamp(20px,6vw,80px);max-width:1280px;margin:0 auto}
+.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:clamp(60px,12vh,120px)}
+h1{font-weight:800;font-size:clamp(2.6rem,9.5vw,8.5rem);line-height:.95;letter-spacing:-.045em;margin:0 0 28px;max-width:11ch}
+h1 span{background:linear-gradient(100deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:46ch;font-size:clamp(1rem,1.6vw,1.25rem);color:var(--mute);margin:0 0 36px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:99px;border:1px solid var(--line);background:rgba(255,106,61,.1);backdrop-filter:blur(10px);font-weight:500;transition:background .3s,transform .3s}
+.btn:hover{background:linear-gradient(100deg,var(--a),var(--b));color:#12060a;transform:scale(1.04)}
+.hint{position:absolute;right:clamp(20px,6vw,80px);bottom:40px;color:var(--mute);font-size:.85rem;writing-mode:vertical-rl}
+h2{font-weight:800;font-size:clamp(2rem,5.5vw,4.6rem);line-height:1;letter-spacing:-.04em;margin:0 0 40px;max-width:16ch}
+.about{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(30px,6vw,90px);align-items:start}
+.about p{margin:0 0 20px;font-size:clamp(1.05rem,1.7vw,1.35rem);max-width:60ch}
+.facts{border-left:1px solid var(--line);padding-left:28px;color:var(--mute)}
+.facts div{margin-bottom:22px}.facts b{display:block;color:var(--ink);font-weight:500;font-size:1.1rem}
+.work a{display:grid;grid-template-columns:1fr auto;gap:8px 30px;align-items:baseline;padding:clamp(24px,4vw,44px) 0;border-top:1px solid var(--line);transition:padding .4s,background .4s}
+.work a:last-child{border-bottom:1px solid var(--line)}
+.work h3{margin:0;font-weight:800;font-size:clamp(1.6rem,4.6vw,3.8rem);letter-spacing:-.035em;line-height:1.05;transition:transform .4s,color .4s}
+.work .tags{color:var(--mute);font-size:.95rem;text-align:right}
+.work .desc{grid-column:1/-1;color:var(--mute);max-width:60ch;max-height:0;opacity:0;overflow:hidden;transition:max-height .5s,opacity .5s}
+.work a:hover,.work a:focus-visible{padding-left:18px;background:linear-gradient(90deg,rgba(255,106,61,.12),transparent)}
+.work a:hover h3,.work a:focus-visible h3{transform:translateX(10px);color:var(--b)}
+.work a:hover .desc,.work a:focus-visible .desc{max-height:120px;opacity:1}
+@media(hover:none){.work .desc{max-height:none;opacity:1;margin-top:6px}}
+.marquee{overflow:hidden;border-block:1px solid var(--line);padding:26px 0;white-space:nowrap;position:relative;z-index:2;background:rgba(18,6,10,.5);backdrop-filter:blur(8px)}
+.marquee div{display:inline-block;animation:mq 30s linear infinite;font-weight:800;font-size:clamp(1.8rem,5vw,4rem);letter-spacing:-.03em}
+.marquee i{font-style:normal;color:var(--a);margin:0 .5em}
+@keyframes mq{to{transform:translateX(-50%)}}
+.live{font-style:normal;font-size:.8rem;padding:3px 12px;border-radius:99px;background:rgba(124,255,190,.14);color:#8dffc6;margin-right:12px}
+.live::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#8dffc6;margin-right:7px;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.25}}
+p,h2,h3,.facts{text-shadow:0 2px 22px rgba(18,6,10,.95),0 0 6px rgba(18,6,10,.8)}
+body:not(.ready){overflow:hidden}
+body:not(.ready) h1,body:not(.ready) .hero p,body:not(.ready) .hero .btn{animation-play-state:paused}
+#loader{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;flex-direction:column;justify-content:space-between;padding:calc(28px + env(safe-area-inset-top,0px)) clamp(20px,5vw,56px) calc(28px + env(safe-area-inset-bottom,0px));transition:transform 1.1s cubic-bezier(.77,0,.18,1)}
+#loader.out{transform:translateY(-100%)}
+.ld-top{display:flex;justify-content:space-between;font-weight:800;font-size:1.25rem;letter-spacing:-.02em}
+.ld-top span{font-weight:500;color:var(--mute);font-size:1rem}
+.ld-btm{display:flex;flex-direction:column}
+.ld-count{align-self:flex-end;display:flex;align-items:flex-start;line-height:.85;font-weight:800;font-size:clamp(6rem,26vw,20rem);letter-spacing:-.06em;font-variant-numeric:tabular-nums;background:linear-gradient(100deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ld-count small{font-size:.2em;margin:.35em 0 0 .08em;letter-spacing:0}
+.ld-bar{height:2px;background:var(--line);margin-top:22px}
+.ld-bar i{display:block;height:100%;background:linear-gradient(100deg,var(--a),var(--b));transform:scaleX(0);transform-origin:left}
+@keyframes rise{from{opacity:0;transform:translateY(46px);filter:blur(14px)}}
+@media(prefers-reduced-motion:no-preference){h1{animation:rise 1.3s cubic-bezier(.2,.8,.2,1) .15s both}.hero p,.hero .btn{animation:rise 1.2s cubic-bezier(.2,.8,.2,1) .55s both}}
+#ring{position:fixed;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border:1.5px solid var(--b);border-radius:50%;pointer-events:none;z-index:6;opacity:0;transition:width .25s,height .25s,margin .25s,background .25s,opacity .3s}
+#ring.big{width:80px;height:80px;margin:-40px 0 0 -40px;background:rgba(255,61,129,.16)}
+@media(hover:none){#ring{display:none}}
+.contact{text-align:center;padding-bottom:140px}
+.contact h2{margin-inline:auto;max-width:12ch}
+.mail{display:inline-block;font-weight:800;font-size:clamp(1.2rem,4vw,3rem);letter-spacing:-.03em;border-bottom:2px solid var(--a);padding-bottom:6px;word-break:break-all;transition:color .3s}
+.mail:hover{color:var(--b)}
+.social{margin-top:34px;display:flex;gap:22px;justify-content:center;color:var(--mute)}
+.social a:hover{color:var(--ink)}
+footer{padding:30px clamp(20px,6vw,80px);border-top:1px solid var(--line);color:var(--mute);font-size:.9rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;background:rgba(18,6,10,.6)}
+.rv{opacity:0;transform:translateY(36px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media(max-width:760px){.about{grid-template-columns:1fr}.facts{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:24px}.hint{display:none}nav .links a:nth-child(3){display:none}}
+@media(prefers-reduced-motion:reduce){.marquee div{animation:none}.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="loader"><div class="ld-top">Harshal<span id="ldt">Loading</span></div><div class="ld-btm"><div class="ld-count"><b id="ldn" style="font-weight:inherit">0</b><small>%</small></div><div class="ld-bar"><i id="ldb"></i></div></div></div>
+<script>
+(function(){
+  var n=document.getElementById('ldn'),b=document.getElementById('ldb'),L=document.getElementById('loader'),t=document.getElementById('ldt');
+  var v=0,done=false,start=performance.now(),minMs=2400;
+  addEventListener('load',function(){done=true});
+  setTimeout(function(){done=true},9000);
+  function step(){
+    var el=performance.now()-start,cap=(done&&el>minMs)?100:Math.min(92,el/minMs*92);
+    v+=(cap-v)*.07;if(cap===100&&v>99.4)v=100;
+    var r=Math.round(v);n.textContent=r;b.style.transform='scaleX('+(v/100)+')';
+    if(r<100){requestAnimationFrame(step);return}
+    t.textContent='Loaded';
+    setTimeout(function(){L.classList.add('out');document.body.classList.add('ready');if(window.__ready)window.__ready();setTimeout(function(){L.remove()},1300)},550);
+  }
+  step();
+})();
+</script>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div id="glow" aria-hidden="true"></div>
+<div id="ring" aria-hidden="true"></div>
+
+<nav>
+  <a class="logo" href="#top">Harshal</a>
+  <div class="links"><a href="#about">About</a><a href="#work">Work</a><a href="#contact">Contact</a></div>
+</nav>
+
+<header class="hero" id="top">
+  <h1>I build <span>smart, interactive</span> web experiences.</h1>
+  <p>Hi, I’m Harshal, an AI coder from Pune, studying computer science. I build with AI, Python, JavaScript, HTML and CSS.</p>
+  <div><a class="btn" href="#work">See my work</a></div>
+  <div class="hint">Move your mouse. Scroll.</div>
+</header>
+
+<section id="about">
+  <h2 class="rv">Learning by building real things.</h2>
+  <div class="about">
+    <div class="rv">
+      <p>I’m in my second year of B.Sc. Computer Science at MES’ Abasaheb Garware College in Pune. I like projects where code meets a real problem, from a marketplace for business automation to a game with an AI opponent.</p>
+      <p>My coursework covers programming in C, databases with SQL, discrete mathematics, digital electronics and statistics. Outside class, I’m an AI coder, and I’m learning to build AI agents with Python and LangChain.</p>
+    </div>
+    <div class="facts rv">
+      <div><b>Based in</b>Pune, Maharashtra</div>
+      <div><b>Role</b>AI coder</div>
+      <div><b>Studying</b>SYBSc Computer Science</div>
+      <div><b>Works with</b>Python, LangChain, JavaScript, SQL</div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div>Python<i>•</i>LangChain<i>•</i>AI Agents<i>•</i>JavaScript<i>•</i>HTML<i>•</i>CSS<i>•</i>SQL<i>•</i>C<i>•</i>Python<i>•</i>LangChain<i>•</i>AI Agents<i>•</i>JavaScript<i>•</i>HTML<i>•</i>CSS<i>•</i>SQL<i>•</i>C<i>•</i></div></div>
+
+<section id="work">
+  <h2 class="rv">Selected projects</h2>
+  <div class="work rv">
+    <a href="https://harshal-shr.github.io/-Agentmart-.Al-Agent-Marketplace-for-Business-Automation/" target="_blank" rel="noopener">
+      <h3>AgentMart</h3><span class="tags"><em class="live">Live</em>Marketplace</span>
+      <p class="desc">A marketplace that connects AI developers who build automation agents with businesses that want repetitive work automated. Sign up as either role, post or browse, then connect.</p>
+    </a>
+    <a href="https://harshal-shr.github.io/Portfolio-AI/" target="_blank" rel="noopener">
+      <h3>Portfolio AI</h3><span class="tags"><em class="live">Live</em>Portfolio builder</span>
+      <p class="desc">An AI-assisted portfolio builder with a bio generator, portfolio score, templates and PDF export.</p>
+    </a>
+    <a href="https://harshal-shr.github.io/Tic-Tac-Toe-game/" target="_blank" rel="noopener">
+      <h3>Tic-Tac-Toe</h3><span class="tags"><em class="live">Live</em>Game</span>
+      <p class="desc">Play with a friend or take on a hard AI opponent. Scores are tracked across rounds.</p>
+    </a>
+    <a href="https://github.com/harshal-shr" target="_blank" rel="noopener">
+      <h3>More on GitHub</h3><span class="tags">harshal-shr</span>
+      <p class="desc">Smaller builds, experiments and assignments live on my GitHub profile.</p>
+    </a>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2 class="rv">Have an idea? Let’s build it.</h2>
+  <a class="mail rv" href="mailto:harshalmohite28@gmail.com">harshalmohite28@gmail.com</a>
+  <div class="social rv"><a href="https://github.com/harshal-shr" target="_blank" rel="noopener">GitHub</a><a href="https://www.linkedin.com/in/harshal-mohite-71aa6637a" target="_blank" rel="noopener">LinkedIn</a></div>
+</section>
+
+<footer><span>© 2026 Harshal</span><span>Pune, India</span></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var glow=document.getElementById('glow'),cur=document.getElementById('ring'),rx=0,ry=0,mx=0,my=0,gx=0,gy=0,tx=0,ty=0;
+  addEventListener('pointermove',function(e){mx=e.clientX;my=e.clientY;tx=e.clientX/innerWidth-.5;ty=e.clientY/innerHeight-.5;cur.style.opacity=1});
+  addEventListener('pointerover',function(e){cur.classList.toggle('big',!!(e.target.closest&&e.target.closest('a')))});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+
+  var renderer;
+  try{renderer=new THREE.WebGLRenderer({canvas:document.getElementById('bg'),antialias:true,alpha:true})}catch(e){}
+  if(!renderer){glow.style.display='none';cur.style.display='none';return}
+
+  var scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(60,1,.1,100);var zT=18;cam.position.z=18;window.__ready=function(){zT=7};
+  var N=2400,pos=new Float32Array(N*3),i,r,t,p;
+  for(i=0;i<N;i++){r=3.5+Math.random()*11;t=Math.random()*6.283;p=Math.acos(2*Math.random()-1);
+    pos[i*3]=r*Math.sin(p)*Math.cos(t);pos[i*3+1]=r*Math.sin(p)*Math.sin(t);pos[i*3+2]=r*Math.cos(p)}
+  var g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  var pts=new THREE.Points(g,new THREE.PointsMaterial({size:.035,color:0xffb08a,transparent:true,opacity:.85}));scene.add(pts);
+  var knot=new THREE.Mesh(new THREE.IcosahedronGeometry(1.7,3),new THREE.MeshBasicMaterial({color:0xff6a3d,wireframe:true,transparent:true,opacity:.45}));scene.add(knot);knot.userData.bp=knot.geometry.attributes.position.array.slice();
+  var ring=new THREE.Mesh(new THREE.IcosahedronGeometry(.7,1),new THREE.MeshBasicMaterial({color:0xff3d81,wireframe:true,transparent:true,opacity:.6}));scene.add(ring);
+  var tor=new THREE.Mesh(new THREE.TorusGeometry(3.2,.012,8,180),new THREE.MeshBasicMaterial({color:0xff3d81,transparent:true,opacity:.55}));scene.add(tor);
+  var sh=[],sg=new THREE.OctahedronGeometry(.12);
+  for(i=0;i<26;i++){var m=new THREE.Mesh(sg,new THREE.MeshBasicMaterial({color:i%2?0xff3d81:0xffb08a,wireframe:i%3===0}));m.userData={r:3+Math.random()*3.5,s:.15+Math.random()*.35,a:Math.random()*6.283,y:(Math.random()-.5)*4};scene.add(m);sh.push(m)}
+
+  function size(){renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()}
+  addEventListener('resize',size);size();
+
+  var sp=0,pulse=0,clock=new THREE.Clock();addEventListener('pointerdown',function(){pulse=1});
+  function tick(){
+    var time=clock.getElapsedTime()*(reduce?.15:1),max=Math.max(1,document.documentElement.scrollHeight-innerHeight),target=scrollY/max;
+    sp+=(target-sp)*.06;
+    var mob=innerWidth<760,sc=mob?.7:1;
+    pulse*=.92;knot.scale.setScalar(sc*(1+sp*.5+pulse*.3));
+    var pa=knot.geometry.attributes.position,bp=knot.userData.bp,k,bx,by,bz,dd;
+    for(k=0;k<pa.count;k++){bx=bp[k*3];by=bp[k*3+1];bz=bp[k*3+2];dd=1+.2*Math.sin(bx*1.8+time*1.3)*Math.cos(by*1.6+time*1.1)+.1*Math.sin(bz*2.4+time*1.7)+pulse*.18*Math.sin(bx*6+time*9);pa.setXYZ(k,bx*dd,by*dd,bz*dd)}
+    pa.needsUpdate=true;
+    knot.position.x=(mob?0:1)*Math.sin(sp*Math.PI*2+.6)*2.6+(mob?0:2);
+    knot.position.y=Math.cos(sp*Math.PI*3)*.8-(mob?1.4:0);
+    knot.rotation.x=time*.15+sp*5+ty*1.2;
+    knot.rotation.y=time*.2+sp*7+tx*1.6;
+    ring.position.copy(knot.position);ring.rotation.x=-time*.4;ring.rotation.y=time*.5+tx;
+    ring.scale.setScalar(sc*(1+Math.sin(time*1.5)*.08));
+    tor.position.copy(knot.position);tor.scale.setScalar(sc*(1+pulse*.2));tor.rotation.x=1.2+Math.sin(time*.5)*.3+ty;tor.rotation.y=time*.3+tx;
+    sh.forEach(function(m){var u=m.userData,a=u.a+time*u.s;m.position.set(Math.cos(a)*u.r+knot.position.x*.4,u.y+Math.sin(a*1.7)*.6,Math.sin(a)*u.r*.6);m.rotation.x=time;m.rotation.y=time*.7});
+    pts.position.x+=(tx*.9-pts.position.x)*.04;
+    pts.rotation.y=time*.03+sp*1.5+tx*.2;pts.rotation.x=sp*.8+ty*.2;
+    knot.material.color.setHSL(.04-sp*.1,.95,.6);
+    cam.position.z+=(zT-cam.position.z)*.03;cam.position.x+=(tx*.8-cam.position.x)*.05;cam.position.y+=(-ty*.8-cam.position.y)*.05;cam.lookAt(0,0,0);
+    gx+=(mx-gx)*.1;gy+=(my-gy)*.1;glow.style.transform='translate3d('+gx+'px,'+gy+'px,0)';
+    rx+=(mx-rx)*.25;ry+=(my-ry)*.25;cur.style.transform='translate3d('+rx+'px,'+ry+'px,0)';
+    renderer.render(scene,cam);requestAnimationFrame(tick)
+  }
+  tick();
+})();
+</script>
+</body>
+</html>
